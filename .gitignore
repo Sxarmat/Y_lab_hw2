@@ -1,0 +1,7 @@
+__pycache__/
+*env.py
+*.pyc
+*.db
+venv/
+.idea/
+test.py
