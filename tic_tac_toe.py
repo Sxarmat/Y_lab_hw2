@@ -2,6 +2,10 @@ from random import choice
 
 
 def game():
+    global playing_field
+    playing_field = [[0 for i in range(10)] for n in range(10)]
+    global cells
+    cells = {}
     new_game()
     result = ''
     while cells:
@@ -27,8 +31,6 @@ def game():
 
 
 def new_game():
-    global playing_field
-    global cells
     i = 0
     for row in range(10):
         for cell in range(10):
@@ -47,7 +49,6 @@ def show_playing_field():
 
 
 def move(key_cell, simbol):
-    global cells
     if key_cell in cells:
         playing_field[cells[key_cell][0]][cells[key_cell][1]] = simbol
         return True
@@ -55,7 +56,6 @@ def move(key_cell, simbol):
 
 
 def check_louse(key_cell, simbol):
-    global cells
     row = cells[key_cell][0]
     cell = cells[key_cell][1]
     k = 4
@@ -85,6 +85,5 @@ def check_louse(key_cell, simbol):
     return False
 
 
-playing_field = [[0 for i in range(10)] for n in range(10)]
-cells = {}
-game()
+if __name__ == '__main__':
+    game()
