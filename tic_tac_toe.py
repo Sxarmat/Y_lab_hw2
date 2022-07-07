@@ -27,7 +27,7 @@ def game():
             continue
     result = 'Ничья' if not result else result
     show_playing_field()
-    print(result)
+    return result
 
 
 def new_game():
@@ -74,7 +74,6 @@ def check_louse(key_cell, simbol):
             if col_2 in border_field:
                 diagonal_2 += str(playing_field[row_1][col_2])
         k -= 1
-
     for j in range(cell - 4, cell + 5):
         if j in range(10):
             horizontal += str(playing_field[row][j])
@@ -86,4 +85,4 @@ def check_louse(key_cell, simbol):
 
 
 if __name__ == '__main__':
-    game()
+    print(game())
