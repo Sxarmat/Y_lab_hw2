@@ -2,7 +2,7 @@ from itertools import permutations
 from math import sqrt, pow
 
 
-def find_route(post, addresses):
+def find_routes(post, addresses):
     '''
     Ищет все возможные варианты маршрута, сравнивает их длину и возвращает наиболее короткий из них
     :param post: координаты почтового отделения
@@ -10,16 +10,17 @@ def find_route(post, addresses):
     :return: строка с последовательностью всех точек, которые составляют самый короткий из маршрутов с выводом
     промежуточных расстояний для каждой точки (от начала до текущей точки) и общей длины маршрута.
     '''
-    shortest_route = ''
-    shortest_distance = float('inf')
+    all_routes = set()
+    shortest_route = float('inf')
     start = stop = post
     waypoints = permutations(addresses, len(addresses))
     for waypoint in waypoints:
         route = calc_distance((start, *waypoint, stop))
-        if route[1] < shortest_distance:
-            shortest_route = route[0]
-            shortest_distance = route[1]
-    return shortest_route
+        all_routes.add((route[1], route[0]))
+        if route[1] < shortest_route:
+            shortest_route = route[1]
+    shortest_routes = set(filter(lambda x: x[0] == shortest_route, all_routes))
+    return shortest_routes
 
 
 def calc_distance(route):
@@ -42,4 +43,6 @@ def calc_distance(route):
 if __name__ == '__main__':
     post_in = (0, 2)
     addresses_in = ((2, 5), (5, 2), (6, 6), (8, 3))
-    print('shortest_route =', find_route(post_in, addresses_in))
+    routes = find_routes(post_in, addresses_in)
+    for item in routes:
+        print(item[1], '=', item[0])
