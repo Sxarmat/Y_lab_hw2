@@ -1,10 +1,6 @@
 from random import choice
 
 
-
-class TicTacToe():
-    pass
-
 def game():
     global playing_field
     playing_field = [[0 for i in range(10)] for n in range(10)]
